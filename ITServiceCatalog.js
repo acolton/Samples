@@ -14,24 +14,24 @@ function getContent(serviceID) {
     var method = "GetListItems";
     var list = "ServiceOptions";
     var fieldsToRead = "<ViewFields>" +
-							"<FieldRef Name='Title' />" +
-							"<FieldRef Name='Image' />" +
-							"<FieldRef Name='Overview' />" +
-							"<FieldRef Name='HowToOrder' />" +
-						"</ViewFields>";
+				"<FieldRef Name='Title' />" +
+				"<FieldRef Name='Image' />" +
+				"<FieldRef Name='Overview' />" +
+				"<FieldRef Name='HowToOrder' />" +
+			"</ViewFields>";
 	
-    var query = "<Query>" +
-					"<Where>" +
-							"<And>" +
-								"<Eq>" +
-									"<FieldRef Name='ServiceCode'/><Value Type='Text'>" + serviceID + "</Value>" +
-								"</Eq>" +
-								"<Eq>" +
-									"<FieldRef Name='ActiveR'/><Value Type='Text'>Yes</Value>" +
-								"</Eq>" +
-							"</And>" +
-					"</Where>" +
-				"</Query>";
+	var query = "<Query>" +
+		    	"<Where>" +
+				"<And>" +
+					"<Eq>" +
+						"<FieldRef Name='ServiceCode'/><Value Type='Text'>" + serviceID + "</Value>" +
+					"</Eq>" +
+					"<Eq>" +
+						"<FieldRef Name='ActiveR'/><Value Type='Text'>Yes</Value>" +
+					"</Eq>" +
+				 "</And>" +
+			"</Where>" +
+		   "</Query>";
 
     $().SPServices({
         operation: method,
@@ -57,16 +57,14 @@ function getContent(serviceID) {
 
 /* Publish Content to Page */
 function populatePage(image, title, overview, order) {
-
-	$("#imageHolder").append("<p align='center'><img width='180' src='" + image + "' alt=''/></p>");
-					   
+	
+    $("#imageHolder").append("<p align='center'><img width='180' src='" + image + "' alt=''/></p>");
     $("#title").append(title);
-    
     $("#center").append("<div id='overview'>" + 
-    						"<h1>Overview</h1>" +
-    						"<p>" + overview + "</p><br/>" +
-		  				"</div>");
-	$("#orderDetail").append("<p>" + order + "</p>");
+    			"<h1>Overview</h1>" +
+    			"<p>" + overview + "</p><br/>" +
+		  	"</div>");
+    $("#orderDetail").append("<p>" + order + "</p>");
 	  				
 }	
 
@@ -79,27 +77,27 @@ function getLinks(serviceID) {
     var method = "GetListItems";
     var list = "Links";
     var fieldsToRead = "<ViewFields>" +
-							"<FieldRef Name='URL' />" +
-							"<FieldRef Name='LinkText' />" +
-							"<FieldRef Name='LinkType' />" +
-							"<FieldRef Name='ServiceCode' />" +
-						"</ViewFields>";
+				"<FieldRef Name='URL' />" +
+				"<FeldRef Name='LinkText' />" +
+				"<FieldRef Name='LinkType' />" +
+				"<FieldRef Name='ServiceCode' />" +
+			"</ViewFields>";
 
     var query = "<Query>" +
-					"<Where>" +
-						"<And>" +
-							"<Eq>" +
-								"<FieldRef Name='ServiceCode'/><Value Type='Text'>" + serviceID + "</Value>" +
-							"</Eq>" +
-							"<Eq>" +
-								"<FieldRef Name='ActiveR'/><Value Type='Text'>Yes</Value>" +
-							"</Eq>" +
-						"</And>" +
-					"</Where>" +
-					"<OrderBy>" +
-						"<FieldRef Name='LinkType' Ascending='True'/>" +
-					"</OrderBy>" +
-				"</Query>";
+			"<Where>" +
+				"<And>" +
+					"<Eq>" +
+						"<FieldRef Name='ServiceCode'/><Value Type='Text'>" + serviceID + "</Value>" +
+					"</Eq>" +
+					"<Eq>" +
+						"<FieldRef Name='ActiveR'/><Value Type='Text'>Yes</Value>" +
+					"</Eq>" +
+				"</And>" +
+			"</Where>" +
+			"<OrderBy>" +
+				"<FieldRef Name='LinkType' Ascending='True'/>" +
+			"</OrderBy>" +
+		"</Query>";
 
     $().SPServices({
         operation: method,
@@ -131,21 +129,21 @@ function getLinks(serviceID) {
 function populateLinks(link, linkText, linkType, i, x, servicecode) {
  	 	
  if (linkType == "related") {
-	 	if (i == 1) {
-		 $("#relatedHolder").append("<div id='related'><h2>Related Links</h2></div>");
-		}
+	if (i == 1) {
+		$("#relatedHolder").append("<div id='related'><h2>Related Links</h2></div>");
+	}
 
-		$("#related").append("<div><p><a class='grey' target='_blank' href='" + link + "'>" + linkText + "</a></p><br />");	
+	$("#related").append("<div><p><a class='grey' target='_blank' href='" + link + "'>" + linkText + "</a></p><br />");	
  } 
   
  else {
- 		if (x == 1) {
- 		$("#educationHolder").append("<div id='learnMore' class='header'><img src='../PublishingImages/DetailHeaders-02.png' alt='Learn More' /></div>" +
+	if (x == 1) {
+		$("#educationHolder").append("<div id='learnMore' class='header'><img src='../PublishingImages/DetailHeaders-02.png' alt='Learn More' /></div>" +
  									  "<div id='education'><h2>Education and Details</h2></div>");
-		}
+	}
 
     $("#education").append("<p><a class='grey' target='_blank' href='" + link + "'><img width='30' align='absMiddle' src='/PublishingImages/ITServices-" + 
-    					       linkType + ".png' alt=''/>&#160;&#160;" + linkText + "</a></p>");
+                           linkType + ".png' alt=''/>&#160;&#160;" + linkText + "</a></p>");
  }
 
 }
@@ -156,26 +154,26 @@ function getDetails(serviceID) {
     var method = "GetListItems";
     var list = "ServiceOptionDetails";
     var fieldsToRead = "<ViewFields>" +
-							"<FieldRef Name='ContentType0' />" +
-							"<FieldRef Name='Content' />" +
-							"<FieldRef Name='Title' />" +
-						"</ViewFields>";
+				"<FieldRef Name='ContentType0' />" +
+				"<FieldRef Name='Content' />" +
+				"<FieldRef Name='Title' />" +
+			"</ViewFields>";
 
     var query = "<Query>" +
-					"<Where>" +
-						"<And>" +
-							"<Eq>" +
-								"<FieldRef Name='ServiceCode'/><Value Type='Text'>" + serviceID + "</Value>" +
-							"</Eq>" +
-							"<Eq>" +
-								"<FieldRef Name='ActiveR'/><Value Type='Text'>Yes</Value>" +
-							"</Eq>" +
-						"</And>" +
-					"</Where>" +
-					"<OrderBy>" +
-						"<FieldRef Name='ContentType0' Ascending='True'/>" +
-					"</OrderBy>" +
-				"</Query>";
+			"<Where>" +
+				"<And>" +
+					"<Eq>" +
+						"<FieldRef Name='ServiceCode'/><Value Type='Text'>" + serviceID + "</Value>" +
+					"</Eq>" +
+					"<Eq>" +
+						"<FieldRef Name='ActiveR'/><Value Type='Text'>Yes</Value>" +
+					"</Eq>" +
+				"</And>" +
+			"</Where>" +
+			"<OrderBy>" +
+				"<FieldRef Name='ContentType0' Ascending='True'/>" +
+			"</OrderBy>" +
+		"</Query>";
 
     $().SPServices({
         operation: method,

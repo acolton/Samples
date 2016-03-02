@@ -30,7 +30,7 @@ shinyServer(function(input, output, session) {
       
       endTime <- format(Sys.time(), "%Y-%m-%d %H:%M:%S") 
       XData <- J("com.XXXXX.api.Query")$GetUrgentEmailTicketsWithFirstAssignTimeinBetween(initialStartTime, endTime)
-        rdata$UrgentEmails <<- xxxxxxData[1]
+        rdata$UrgentEmails <<- XData[1]
         rdata$UrgentAvgRT <<- XData[2]   # unit in hours
       XData <- J("com.XXXXX.api.Query")$GetHighEmailTicketsWithFirstAssignTimeinBetween(initialStartTime, endTime)
         rdata$HighEmails <<- XData[1]

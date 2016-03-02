@@ -39,51 +39,51 @@ function universalResults() {
     var input = $("#query").val().split(" ");
     var count = new Number;
     var fieldsToRead = "<ViewFields>" +
-							"<FieldRef Name='Title' />" +
-							"<FieldRef Name='Thumbnail' />" +
-							"<FieldRef Name='Description' />" +
-							"<FieldRef Name='Likes' />" +
-							"<FieldRef Name='CreatedDate' />" +
-							"<FieldRef Name='Duration' />" +
-							"<FieldRef Name='Hits' />" +
-							"<FieldRef Name='ID' />" +
-							"<FieldRef Name='Contributor' />" +
-							"<FieldRef Name='Channel' />" +
-						"</ViewFields>";
+				"<FieldRef Name='Title' />" +
+				"<FieldRef Name='Thumbnail' />" +
+				"<FieldRef Name='Description' />" +
+				"<FieldRef Name='Likes' />" +
+				"<FieldRef Name='CreatedDate' />" +
+				"<FieldRef Name='Duration' />" +
+				"<FieldRef Name='Hits' />" +
+				"<FieldRef Name='ID' />" +
+				"<FieldRef Name='Contributor' />" +
+				"<FieldRef Name='Channel' />" +
+			"</ViewFields>";
     var baseQuery;
     if (category == "all") {
         baseQuery = "<And>" +
-        				"<Eq>" +
-							"<FieldRef Name='Active'/><Value Type='Text'>true</Value>" +
-						"</Eq>" +
-	        			"<Or>" +
-							"<Contains>" +
-								"<FieldRef Name='Title' /><Value Type='Text'>" + input[0] + "</Value>" +
-							"</Contains>" +
-							"<Contains>" +
-								"<FieldRef Name='Description' /><Value Type='Text'>" + input[0] + "</Value>" +
-							"</Contains>" +
-						"</Or>" +
-					"</And>";
+        	     	"<Eq>" +
+		 		"<FieldRef Name='Active'/><Value Type='Text'>true</Value>" +
+		      	"</Eq>" +
+	              	"<Or>" +
+		       		"<Contains>" +
+					"<FieldRef Name='Title' /><Value Type='Text'>" + input[0] + "</Value>" +
+		    		"</Contains>" +
+		    		"<Contains>" +
+					"<FieldRef Name='Description' /><Value Type='Text'>" + input[0] + "</Value>" +
+		    		"</Contains>" +
+		    	"</Or>" +
+		    "</And>";
     } else {
         baseQuery = "<And>" +
-        				"<Eq>" +
-							"<FieldRef Name='Active'/><Value Type='Text'>true</Value>" +
-						"</Eq>" +
-	        			"<And>" +
-							"<Eq>" +
-								"<FieldRef Name='Channel' /><Value Type='Text'>" + category + "</Value>" +
-							"</Eq>" +
-							"<Or>" +
-								"<Contains>" +
-									"<FieldRef Name='Title' /><Value Type='Text'>" + input[0] + "</Value>" +
-								"</Contains>" +
-								"<Contains>" +
-									"<FieldRef Name='Description' /><Value Type='Text'>" + input[0] + "</Value>" +
-								"</Contains>" +
-							"</Or>" +
-						"</And>" +
-					"</And>";
+        		"<Eq>" +
+				"<FieldRef Name='Active'/><Value Type='Text'>true</Value>" +
+			"</Eq>" +
+	        	"<And>" +
+				"<Eq>" +
+					"<FieldRef Name='Channel' /><Value Type='Text'>" + category + "</Value>" +
+				"</Eq>" +
+				"<Or>" +
+					"<Contains>" +
+						"<FieldRef Name='Title' /><Value Type='Text'>" + input[0] + "</Value>" +
+					"</Contains>" +
+					"<Contains>" +
+							"<FieldRef Name='Description' /><Value Type='Text'>" + input[0] + "</Value>" +
+					"</Contains>" +
+				"</Or>" +
+			"</And>" +
+		   "</And>";
     }
 
 	var finalQuery = baseQuery;
